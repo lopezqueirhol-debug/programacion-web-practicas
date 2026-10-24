@@ -155,3 +155,18 @@ color: #60a5fa;
 body.temas nav a:hover {
 color: #93c5fd;
 }
+
+.likes {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.likes button {
+    background-color: #ef4444;
+    color: white;
+}
+
+.likes span {
+    display: block;
+    font-weight: bold;
+}
