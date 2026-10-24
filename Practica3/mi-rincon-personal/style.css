@@ -132,3 +132,26 @@ button:hover {
 .ocultar {
     display: none;
 }
+
+body.temas {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+body.temas .img-card {
+    background-color: #1e1e1e;
+}
+
+body.temas .hab {
+    background-color: #3b82f6;
+}
+
+body.temas h1,
+body.temas nav a,
+body.temas .img-card h3 {
+color: #60a5fa;
+}
+ 
+body.temas nav a:hover {
+color: #93c5fd;
+}
