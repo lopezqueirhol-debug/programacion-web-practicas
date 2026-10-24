@@ -29,3 +29,20 @@ function alternarTemas() {
 }
 
 btnTema.addEventListener("click", alternarTemas);
+
+const btnLike = document.getElementById("btn-like");
+const spanLikes = document.getElementById("like-counter");
+
+let contadorLikes = 0;
+
+function sumarLike() {
+    contadorLikes = ++contadorLikes;
+
+    if (contadorLikes == 1) {
+        spanLikes.textContent = contadorLikes + " ❤ Me gusta";
+    } else {
+        spanLikes.textContent = contadorLikes + " ❤ Me gustas";
+    }
+}
+
+btnLike.addEventListener("click", sumarLike);
