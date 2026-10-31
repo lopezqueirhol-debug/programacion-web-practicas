@@ -44,3 +44,21 @@ function renderLista() {
         listaProductos.appendChild(item);
     });
 }
+
+function agregarProducto() {
+    const nombre = inputProducto.value.trim();
+
+    if (nombre === "") {
+        mensajeError.classList.remove("ocultar");
+    } else {
+        mensajeError.classList.add("ocultar");
+        productos.push({ nombre: nombre, completado: false });
+        inputProducto.value = "";
+        renderLista();
+    }
+
+    inputProducto.focus();
+}
+
+
+btnAgregar.addEventListener("click", agregarProducto);
