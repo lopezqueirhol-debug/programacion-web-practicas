@@ -1,12 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Lista de la Compra</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <main class="contenedor">
+        <h1>Lista de la Compra</h1>
+
+        <div class="formulario">
+            <input type="text" id="input-producto" placeholder="Escribe un producto...">
+            <button id="btn-agregar">Agregar</button>
+        </div>
+
+        <p id="mensaje-error" class="mensaje-error ocultar">Escribe un producto antes de agregar.</p>
+
+        <ul id="lista-productos" class="lista"></ul>
+    </main>
+
     <script src="script.js"></script>
 </body>
 </html>
