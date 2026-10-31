@@ -62,3 +62,9 @@ function agregarProducto() {
 
 
 btnAgregar.addEventListener("click", agregarProducto);
+
+inputProducto.addEventListener("keydown", function (evento) {
+    if (evento.key === "Enter") {
+        agregarProducto();
+    }
+});
