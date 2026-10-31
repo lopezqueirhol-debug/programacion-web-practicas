@@ -60,6 +60,10 @@ function agregarProducto() {
     inputProducto.focus();
 }
 
+function alternarCompletado(indice) {
+    productos[indice].completado = !productos[indice].completado;
+    renderLista();
+}
 
 btnAgregar.addEventListener("click", agregarProducto);
 
