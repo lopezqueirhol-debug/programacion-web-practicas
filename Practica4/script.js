@@ -72,6 +72,22 @@ function eliminarProducto(indice) {
     renderLista();
 }
 
+function ordenarLista() {
+    if (ordenAscendente) {
+        productos.sort(function (a, b) {
+            return a.nombre.localeCompare(b.nombre);
+        });
+        btnOrdenar.textContent = "Ordenar Z-A";
+    } else {
+        productos.sort(function (a, b) {
+            return b.nombre.localeCompare(a.nombre);
+        });
+        btnOrdenar.textContent = "Ordenar A-Z";
+    }
+
+    ordenAscendente = !ordenAscendente;
+    renderLista();
+}
 
 btnAgregar.addEventListener("click", agregarProducto);
 
@@ -81,6 +97,6 @@ inputProducto.addEventListener("keydown", function (evento) {
     }
 });
 
-
+btnOrdenar.addEventListener("click", ordenarLista);
 
 renderLista();
