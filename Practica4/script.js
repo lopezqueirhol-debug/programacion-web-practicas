@@ -65,6 +65,8 @@ function alternarCompletado(indice) {
     renderLista();
 }
 
+
+
 btnAgregar.addEventListener("click", agregarProducto);
 
 inputProducto.addEventListener("keydown", function (evento) {
@@ -72,3 +74,7 @@ inputProducto.addEventListener("keydown", function (evento) {
         agregarProducto();
     }
 });
+
+
+
+renderLista();
