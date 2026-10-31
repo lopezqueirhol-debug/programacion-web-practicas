@@ -65,6 +65,12 @@ function alternarCompletado(indice) {
     renderLista();
 }
 
+function eliminarProducto(indice) {
+    productos = productos.filter(function (producto, i) {
+        return i !== indice;
+    });
+    renderLista();
+}
 
 
 btnAgregar.addEventListener("click", agregarProducto);
