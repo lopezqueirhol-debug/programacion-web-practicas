@@ -63,3 +63,42 @@ button:hover {
     display: block;
     margin: 0 auto 20px;
 }
+
+.lista {
+    list-style: none;
+}
+
+.producto {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    margin-bottom: 8px;
+    background-color: #f7f8fb;
+    border: 1px solid #e1e4ec;
+    border-radius: 8px;
+}
+
+.producto span {
+    flex: 1;
+    cursor: pointer;
+}
+
+.producto.completado span {
+    color: #9a9a9a;
+    text-decoration: line-through;
+}
+
+.btn-eliminar {
+    padding: 6px 12px;
+    font-size: 14px;
+    background-color: #c0392b;
+}
+
+.btn-eliminar:hover {
+    background-color: #962d22;
+}
+
+.ocultar {
+    display: none;
+}
