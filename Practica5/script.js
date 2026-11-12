@@ -93,4 +93,24 @@ btnSiguiente.addEventListener('click', () => {
     }
 });
 
+function realizarBusqueda() {
+    const texto = inputBuscar.value.trim();
+
+    if (texto === '') {
+        obtenerPersonajes(URL_BASE);
+        return;
+    }
+
+    const urlBusqueda = `${URL_BASE}/?name=${encodeURIComponent(texto)}`;
+    obtenerPersonajes(urlBusqueda);
+}
+
+btnBuscar.addEventListener('click', realizarBusqueda);
+
+inputBuscar.addEventListener('keydown', (evento) => {
+    if (evento.key === 'Enter') {
+        realizarBusqueda();
+    }
+});
+
 obtenerPersonajes(URL_BASE);
