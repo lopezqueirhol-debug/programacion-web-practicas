@@ -80,3 +80,17 @@ function actualizarPaginacion() {
 
     btnSiguiente.disabled = (nextUrl === null);
 }
+
+btnAnterior.addEventListener('click', () => {
+    if (prevUrl) {
+        obtenerPersonajes(prevUrl);
+    }
+});
+
+btnSiguiente.addEventListener('click', () => {
+    if (nextUrl) {
+        obtenerPersonajes(nextUrl);
+    }
+});
+
+obtenerPersonajes(URL_BASE);
