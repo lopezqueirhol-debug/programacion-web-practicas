@@ -75,3 +75,8 @@ function dibujarTarjetas(results) {
     });
 }
 
+function actualizarPaginacion() {
+    btnAnterior.disabled = (prevUrl === null);
+
+    btnSiguiente.disabled = (nextUrl === null);
+}
