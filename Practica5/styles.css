@@ -94,3 +94,59 @@ h1 {
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     margin-bottom: 2.5rem;
 }
+
+.tarjeta {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+    border: 1px solid #1e293b;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.tarjeta:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0, 181, 204, 0.15);
+}
+
+.tarjeta img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.tarjeta-body {
+    padding: 1.25rem;
+}
+
+.tarjeta h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.tarjeta p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+}
+
+/* 6. Estados del personaje (Alive, Dead, unknown) */
+.status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-weight: 500;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.status.alive .status-dot { background-color: var(--success); }
+.status.dead .status-dot { background-color: var(--danger); }
+.status.unknown .status-dot { background-color: var(--unknown); }
+
