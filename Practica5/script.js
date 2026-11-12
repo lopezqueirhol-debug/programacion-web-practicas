@@ -39,3 +39,39 @@ async function obtenerPersonajes(url) {
         divPaginacion.style.display = 'none';
     }
 }
+
+function dibujarTarjetas(results) {
+    contenedorTarjetas.innerHTML = '';
+
+    results.forEach(personaje => {
+        const tarjeta = document.createElement('div');
+        tarjeta.classList.add('tarjeta');
+
+        const img = document.createElement('img');
+        img.src = personaje.image;
+        img.alt = personaje.name;
+
+        const tarjetaBody = document.createElement('div');
+        tarjetaBody.classList.add('tarjeta-body');
+
+        const h3 = document.createElement('h3');
+        h3.textContent = personaje.name;
+
+        const pStatus = document.createElement('p');
+        const estadoClase = personaje.status.toLowerCase();
+        pStatus.innerHTML = `Estado: <span class="status ${estadoClase}"><span class="status-dot"></span>${personaje.status}</span>`;
+
+        const pSpecies = document.createElement('p');
+        pSpecies.textContent = `Especie: ${personaje.species}`;
+
+        tarjetaBody.appendChild(h3);
+        tarjetaBody.appendChild(pStatus);
+        tarjetaBody.appendChild(pSpecies);
+
+        tarjeta.appendChild(img);
+        tarjeta.appendChild(tarjetaBody);
+
+        contenedorTarjetas.appendChild(tarjeta);
+    });
+}
+
