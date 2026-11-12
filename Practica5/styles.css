@@ -37,3 +37,53 @@ h1 {
     color: var(--primary);
     text-shadow: 0 0 10px rgba(0, 181, 204, 0.3);
 }
+
+.buscador-zona {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.buscador-zona input {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    border: 1px solid #334155;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.buscador-zona input:focus {
+    border-color: var(--primary);
+}
+
+.buscador-zona button, 
+.paginacion button {
+    background-color: var(--primary);
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.buscador-zona button:hover, 
+.paginacion button:hover:not(:disabled) {
+    background-color: var(--primary-hover);
+}
+
+.mensaje {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin: 2rem 0;
+    min-height: 30px;
+}
