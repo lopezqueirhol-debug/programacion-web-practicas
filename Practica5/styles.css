@@ -131,7 +131,6 @@ h1 {
     margin-bottom: 0.25rem;
 }
 
-/* 6. Estados del personaje (Alive, Dead, unknown) */
 .status {
     display: inline-flex;
     align-items: center;
@@ -150,7 +149,6 @@ h1 {
 .status.dead .status-dot { background-color: var(--danger); }
 .status.unknown .status-dot { background-color: var(--unknown); }
 
-/* 7. Zona y botones de paginación */
 .paginacion {
     display: flex;
     justify-content: center;
