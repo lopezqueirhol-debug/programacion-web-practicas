@@ -46,7 +46,33 @@ app.get('/productos/:id', (req, res) => {
 // PRÁCTICA 6: Completa los siguientes métodos de la API
 // ============================================================
 
-// TODO: POST /productos - Crear nuevo producto
+// POST - Crear nuevo producto
+app.post('/productos', (req, res) => {
+    const { nombre, descripcion, precio } = req.body
+
+    const precioNumber = parseFloat(precio)
+
+    const nombreInvalido = typeof nombre !== 'string' || nombre.trim() === ''
+    const descripcionInvalida = typeof descripcion !== 'string' || descripcion.trim() === ''
+    const precioInvalido = Number.isNaN(precioNumber) || precioNumber <= 0
+
+    if (nombreInvalido || descripcionInvalida || precioInvalido) {
+        return res.status(400).json({ mensaje: 'nombre, descripcion y precio son obligatorios' })
+    }
+
+    const nuevoId = productos.reduce((max, p) => Math.max(max, p.id ?? 0), 0) + 1
+
+    const nuevoProducto = {
+        id: nuevoId,
+        nombre: nombre,
+        descripcion: descripcion,
+        precio: precioNumber
+    }
+
+    productos.push(nuevoProducto)
+
+    return res.status(201).json(nuevoProducto)
+})
 
 
 // TODO: PUT /productos/:id - Actualizar producto
