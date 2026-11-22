@@ -112,8 +112,24 @@ app.put('/productos/:id', (req, res) => {
     return res.status(200).json(productoActualizado)
 })
 
-// TODO: DELETE /productos/:id - Eliminar producto
+// DELETE - Eliminar producto
+app.delete('/productos/:id', (req, res) => {
+    const id = Number(req.params.id)
 
+    const index = productos.findIndex((p) => p.id === id)
+
+    if (index === -1) {
+        return res.status(404)
+            .json({ mensaje: 'El producto no existe' })
+    }
+
+    const productoEliminado = productos.splice(index, 1)[0]
+
+    return res.json({
+        mensaje: 'Producto eliminado',
+        producto: productoEliminado
+    })
+})
 
 app.listen(3000, () => {
     console.log('Servidor corriendo en http://localhost:3000')
