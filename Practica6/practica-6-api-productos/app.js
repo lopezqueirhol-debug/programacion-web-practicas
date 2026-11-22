@@ -24,6 +24,8 @@ const productos = [
     }
 ]
 
+// Revisa que nombre y descripcion sean texto no vacio, y que precio sea un numero mayor que cero.
+// Se usa en POST y PUT para no repetir la validacion.
 function esProductoValido(nombre, descripcion, precio) {
     const nombreValido = typeof nombre === 'string' && nombre.trim() !== ''
     const descripcionValida = typeof descripcion === 'string' && descripcion.trim() !== ''
@@ -58,20 +60,21 @@ app.get('/productos/:id', (req, res) => {
 app.post('/productos', (req, res) => {
     const { nombre, descripcion, precio } = req.body
 
-    const precioNumber = parseFloat(precio)
+    const precioConvertido = parseFloat(precio)
 
-    if (!esProductoValido(nombre, descripcion, precioNumber)) {
+    if (!esProductoValido(nombre, descripcion, precioConvertido)) {
         return res.status(400)
             .json({ mensaje: 'nombre, descripcion y precio son obligatorios y el precio debe ser mayor que cero' })
     }
 
+    // Toma el id mas alto actual y le suma 1, para que no se repita aunque se hayan eliminado productos.
     const nuevoId = productos.reduce((max, p) => Math.max(max, p.id ?? 0), 0) + 1
 
     const nuevoProducto = {
         id: nuevoId,
         nombre: nombre,
         descripcion: descripcion,
-        precio: precioNumber
+        precio: precioConvertido
     }
 
     productos.push(nuevoProducto)
@@ -84,18 +87,19 @@ app.post('/productos', (req, res) => {
 app.put('/productos/:id', (req, res) => {
     const id = Number(req.params.id)
 
-    const index = productos.findIndex((p) => p.id === id)
+    // Busca la posicion del producto si no existe, devuelve -1.
+    const indiceProducto = productos.findIndex((p) => p.id === id)
     
-    if (index === -1) {
+    if (indiceProducto === -1) {
         return res.status(404)
             .json({ mensaje: 'El producto no existe' })
     }
 
     const { nombre, descripcion, precio } = req.body ?? {}
 
-    const precioNumber = parseFloat(precio)
+    const precioConvertido = parseFloat(precio)
 
-    if (!esProductoValido(nombre, descripcion, precioNumber)) {
+    if (!esProductoValido(nombre, descripcion, precioConvertido)) {
         return res.status(400)
             .json({ mensaje: 'nombre, descripcion y precio son obligatorios y el precio debe ser mayor que cero' })
     }
@@ -104,10 +108,10 @@ app.put('/productos/:id', (req, res) => {
         id,
         nombre: nombre,
         descripcion: descripcion,
-        precio: precioNumber
+        precio: precioConvertido
     }
 
-    productos[index] = productoActualizado
+    productos[indiceProducto] = productoActualizado
 
     return res.status(200).json(productoActualizado)
 })
@@ -116,14 +120,16 @@ app.put('/productos/:id', (req, res) => {
 app.delete('/productos/:id', (req, res) => {
     const id = Number(req.params.id)
 
-    const index = productos.findIndex((p) => p.id === id)
+    // Busca la posicion del producto si no existe, devuelve -1.
+    const indiceProducto = productos.findIndex((p) => p.id === id)
 
-    if (index === -1) {
+    if (indiceProducto === -1) {
         return res.status(404)
             .json({ mensaje: 'El producto no existe' })
     }
 
-    const productoEliminado = productos.splice(index, 1)[0]
+    // splice modifica el arreglo original y devuelve un arreglo con lo eliminado y con [0] se saca el producto.
+    const productoEliminado = productos.splice(indiceProducto, 1)[0]
 
     return res.json({
         mensaje: 'Producto eliminado',
