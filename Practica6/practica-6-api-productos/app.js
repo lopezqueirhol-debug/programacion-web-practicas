@@ -24,6 +24,14 @@ const productos = [
     }
 ]
 
+function esProductoValido(nombre, descripcion, precio) {
+    const nombreValido = typeof nombre === 'string' && nombre.trim() !== ''
+    const descripcionValida = typeof descripcion === 'string' && descripcion.trim() !== ''
+    const precioValido = !Number.isNaN(precio) && precio > 0
+
+    return (nombreValido && descripcionValida && precioValido)
+}
+
 // GET - Listar todos los productos
 app.get('/productos', (req, res) => {
     res.json(productos)
@@ -52,12 +60,9 @@ app.post('/productos', (req, res) => {
 
     const precioNumber = parseFloat(precio)
 
-    const nombreInvalido = typeof nombre !== 'string' || nombre.trim() === ''
-    const descripcionInvalida = typeof descripcion !== 'string' || descripcion.trim() === ''
-    const precioInvalido = Number.isNaN(precioNumber) || precioNumber <= 0
-
-    if (nombreInvalido || descripcionInvalida || precioInvalido) {
-        return res.status(400).json({ mensaje: 'nombre, descripcion y precio son obligatorios' })
+    if (!esProductoValido(nombre, descripcion, precioNumber)) {
+        return res.status(400)
+            .json({ mensaje: 'nombre, descripcion y precio son obligatorios y el precio debe ser mayor que cero' })
     }
 
     const nuevoId = productos.reduce((max, p) => Math.max(max, p.id ?? 0), 0) + 1
