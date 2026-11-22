@@ -80,8 +80,37 @@ app.post('/productos', (req, res) => {
 })
 
 
-// TODO: PUT /productos/:id - Actualizar producto
+// PUT Actualizar producto por id
+app.put('/productos/:id', (req, res) => {
+    const id = Number(req.params.id)
 
+    const index = productos.findIndex((p) => p.id === id)
+    
+    if (index === -1) {
+        return res.status(404)
+            .json({ mensaje: 'El producto no existe' })
+    }
+
+    const { nombre, descripcion, precio } = req.body ?? {}
+
+    const precioNumber = parseFloat(precio)
+
+    if (!esProductoValido(nombre, descripcion, precioNumber)) {
+        return res.status(400)
+            .json({ mensaje: 'nombre, descripcion y precio son obligatorios y el precio debe ser mayor que cero' })
+    }
+
+    const productoActualizado = {
+        id,
+        nombre: nombre,
+        descripcion: descripcion,
+        precio: precioNumber
+    }
+
+    productos[index] = productoActualizado
+
+    return res.status(200).json(productoActualizado)
+})
 
 // TODO: DELETE /productos/:id - Eliminar producto
 
